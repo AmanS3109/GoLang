@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h2 {
+            margin-top: 50px;
+        }
+        p {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Real-Time Response:</h2>
+    <p id="response"></p>
+    <script>
+        var sse = new EventSource("/event");
+        var response = document.getElementById("response");
+        sse.onmessage = function(event) {
+            response.innerHTML += event.data + ' ';
+        };
+        sse.onerror = function(e) {
+            setTimeout(() =>
+            (response.innerHTML = ' '), 1000);
+        };
+    </script>
+</body>
+</html>

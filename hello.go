@@ -10,6 +10,7 @@ import (
 func main() {
 	flag.Parse()
 	http.HandleFunc("/", handler)
+	http.HandleFunc("/home", home)
 	http.HandleFunc("/event", event)
 	http.ListenAndServe(":8080", nil)
 }
